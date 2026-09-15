@@ -1,0 +1,12 @@
+[project]
+name = "harness-base-backend"
+version = "0.1.0"
+description = "通用 harness 底座的内核逻辑层（Python）"
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

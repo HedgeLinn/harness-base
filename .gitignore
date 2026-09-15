@@ -1,0 +1,16 @@
+# 依赖与构建产物
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.log
+
+# 锁文件（各场景/前端自行 npm install 生成）
+package-lock.json
+
+# 本地敏感配置
+.env
+.env.local

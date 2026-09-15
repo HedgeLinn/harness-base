@@ -1,0 +1,19 @@
+{
+  "name": "代码仓库助手",
+  "root": ".",
+  "intents": {
+    "command": { "keywords": ["运行", "run", "执行", "git", "npm", "pytest", "python", "命令", "构建", "测试"] },
+    "file": { "keywords": ["读取", "read", "打开", "看", "cat", "内容", "文件", "列出", "list"] },
+    "search": { "keywords": ["搜索", "search", "查找", "grep", "找", "检索"] },
+    "chat": { "keywords": [] }
+  },
+  "boundary": {
+    "allow_dirs": ["."],
+    "allow_commands": ["git", "pytest", "python", "ls", "dir"],
+    "allow_extensions": [".md", ".py", ".ts", ".json", ".txt"],
+    "deny_commands": ["rm", "del", "format", "shutdown", "reboot"]
+  },
+  "llm": {
+    "model": "deepseek-v4-pro"
+  }
+}

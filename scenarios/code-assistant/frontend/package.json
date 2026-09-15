@@ -1,0 +1,18 @@
+{
+  "name": "code-assistant-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "代码仓库助手场景的对话框界面（Vite + 原生 TypeScript）",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vite": "^5.4.0",
+    "vitest": "^2.1.0"
+  }
+}

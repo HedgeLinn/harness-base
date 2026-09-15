@@ -1,0 +1,46 @@
+{
+  "project": "code-assistant",
+  "description": "小型自主智能体对话框：意图识别 → 计划编排 → 分步执行 → 归因审计，受边界白名单约束",
+  "features": [
+    {
+      "id": "feat-006",
+      "name": "执行链内核",
+      "description": "intent → planner → executor → trace 全链路跑通（意图识别规则分流 + 计划编排 + 分步执行 + 归因审计）",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "backend/core/agent/ 实现 intent/planner/executor/trace/tools；pytest 覆盖，15 passed"
+    },
+    {
+      "id": "feat-007",
+      "name": "边界控制",
+      "description": "boundary 白名单校验（操作 + 资源：目录/命令/扩展名），越界拒绝并记录到归因链",
+      "dependencies": ["feat-006"],
+      "status": "done",
+      "evidence": "boundary.py 实现 check_operation/check_path/check_extension/check_command；test_boundary.py 6 项通过"
+    },
+    {
+      "id": "feat-008",
+      "name": "LLM 计划引擎",
+      "description": "planner 接入配置的 LLM（deepseek-v4-pro，关思考），LLM 不可用时降级规则计划",
+      "dependencies": ["feat-006"],
+      "status": "done",
+      "evidence": "llm.py 走 new-api.mypy.cn；planner.make_plan 带 fallback 降级；pytest 15 passed"
+    },
+    {
+      "id": "feat-009",
+      "name": "Web 对话框",
+      "description": "Vite + 原生 TS 对话框：输入 + 对话区 + 执行链可视化面板",
+      "dependencies": ["feat-008"],
+      "status": "done",
+      "evidence": "frontend/index.html + src/ui/ + api.ts；npm run check/test/build 全绿（5 tests passed）"
+    },
+    {
+      "id": "feat-010",
+      "name": "沙箱升级路径",
+      "description": "docs/SANDBOX.md 输出从「配置+校验层」到沙箱/容器隔离的升级步骤",
+      "dependencies": ["feat-007"],
+      "status": "done",
+      "evidence": "docs/SANDBOX.md 四级升级路径（资源限制/Docker/bubblewrap-seccomp/远程隔离）"
+    }
+  ]
+}

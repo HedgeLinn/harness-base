@@ -1,0 +1,54 @@
+{
+  "project": "harness-base",
+  "description": "通用 harness 底座：前端界面 Node/TypeScript + 内核 Python 的可靠 AI 编码环境",
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "底座初始化",
+      "description": "确认仓库能从干净检出安装依赖、跑通验证（前端 check/test/build + 后端 pytest）并从标准启动路径重启",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "validate-harness 100/100；前端 npm run check/test/build 通过（2 tests passed）；后端 pytest 2 passed"
+    },
+    {
+      "id": "feat-002",
+      "name": "前端骨架",
+      "description": "frontend/ 下可运行的最小 Node/TypeScript 界面骨架，含类型检查、单元测试与构建",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "frontend/ 含 package.json、tsconfig、src/greeting.ts、test；npm run check/test/build 全部通过"
+    },
+    {
+      "id": "feat-003",
+      "name": "后端骨架",
+      "description": "backend/ 下可运行的最小 Python 内核骨架，含 pytest 单元测试",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "backend/ 含 pyproject.toml、requirements.txt、core/math_ops.py、tests；python -m pytest 2 passed"
+    },
+    {
+      "id": "feat-004",
+      "name": "验证覆盖",
+      "description": "为当前活跃功能补齐测试、类型检查、lint 或手动验证，确保证据可记录",
+      "dependencies": ["feat-002", "feat-003"],
+      "status": "done",
+      "evidence": "底座验证 100/100；前端 check/test/build 全绿；后端 pytest 通过"
+    },
+    {
+      "id": "feat-005",
+      "name": "收尾与交接",
+      "description": "记录验证证据、更新 progress.md，留下清晰的下一会话启动路径",
+      "dependencies": ["feat-004"],
+      "status": "done",
+      "evidence": "progress.md 记录完整证据；session-handoff.md 提供启动路径"
+    },
+    {
+      "id": "feat-011",
+      "name": "场景化重构",
+      "description": "把 agent 框架从底座剥离为 scenarios/code-assistant/ 落地场景，底座回归纯净可复用 harness",
+      "dependencies": ["feat-005"],
+      "status": "done",
+      "evidence": "scenarios/code-assistant/ 自包含（backend/frontend/README/feature_list/init）；底座 frontend/backend 回归最小骨架；create-harness.mjs 支持 --with-scenario"
+    }
+  ]
+}
